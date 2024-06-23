@@ -77,13 +77,13 @@ export default {
     },
     isThereAWinner() {
       return this.winConditions.some((condition) => {
-        const isXwinner = condition.every(
+        const isXWinner = condition.every(
           (letter) => this.cellsValues[letter] === 'X'
         );
-        const isOwinner = condition.every(
+        const isOWinner = condition.every(
           (letter) => this.cellsValues[letter] === 'O'
         );
-        return isXwinner || isOwinner;
+        return isXWinner || isOWinner;
       });
     },
     fillRemainingCellsWithWinner() {
