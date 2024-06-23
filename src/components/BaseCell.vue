@@ -23,6 +23,11 @@ export default {
       }
     },
   },
+  updated() {
+    if (this.$parent.winner) {
+      this.canMark = true;
+    }
+  },
 };
 </script>
 <style scoped>

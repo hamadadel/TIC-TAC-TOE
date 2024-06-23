@@ -1,5 +1,5 @@
 <template>
-  <button class="restart">Restart</button>
+  <button class="restart" @click="$emit('reset')">Restart</button>
 </template>
 <script>
 export default {

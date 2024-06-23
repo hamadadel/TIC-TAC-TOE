@@ -13,7 +13,7 @@
         @shot="listenOnShot"
       />
     </div>
-    <restart-button @restart="reset" />
+    <restart-button @reset="reset" />
   </section>
 </template>
 
@@ -67,8 +67,7 @@ export default {
       this.cellsValues[marker] = this.activePlayer;
       if (this.isThereAWinner()) {
         this.winner = this.activePlayer;
-        this.gameStatus = 'win';
-        this.color = 'win';
+        this.gameStatus = this.color = 'win';
         this.fillRemainingCellsWithWinner();
         return;
       }
@@ -93,10 +92,24 @@ export default {
         }
       }
     },
+    createNewPlayer() {
+      return ['X', 'O'][Math.round(Math.random())];
+    },
+    reset() {
+      for (const index in this.cellsValues) this.cellsValues[index] = '';
+      (this.winner = ''),
+        (this.activePlayer = this.createNewPlayer()),
+        (this.gameStatus = this.color = 'turn');
+      this.moves = 0;
+    },
   },
   watch: {
     moves(value) {
       value === 9 ? (this.color = 'draw') : '';
+      if (!this.winner && value === 9) {
+        this.gameStatus = 'draw';
+        this.winner = '';
+      }
     },
   },
 };
