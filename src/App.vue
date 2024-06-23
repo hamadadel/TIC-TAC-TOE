@@ -1,9 +1,11 @@
 <template>
+  <statistics-info :matches="matches" :wins="wins" />
   <the-header />
   <base-grid @winner="winner" />
 </template>
 
 <script>
+import StatisticsInfo from '@/components/StatisticsInfo.vue';
 import TheHeader from '@/components/TheHeader.vue';
 import BaseGrid from '@/components/BaseGrid.vue';
 export default {
@@ -11,6 +13,7 @@ export default {
   components: {
     TheHeader,
     BaseGrid,
+    StatisticsInfo,
   },
   data() {
     return {

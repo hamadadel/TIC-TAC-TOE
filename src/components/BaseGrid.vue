@@ -109,6 +109,7 @@ export default {
       value === 9 ? (this.color = 'draw') : '';
       if (!this.winner && value === 9) {
         this.gameStatus = 'draw';
+        this.$parent.matches++;
         this.winner = this.activePlayer = '';
       }
     },
