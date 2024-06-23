@@ -1,6 +1,6 @@
 <template>
   <the-header />
-  <base-grid />
+  <base-grid @winner="winner" />
 </template>
 
 <script>
@@ -20,6 +20,12 @@ export default {
         X: 0,
       },
     };
+  },
+  methods: {
+    winner(winner) {
+      this.matches++;
+      this.wins[winner]++;
+    },
   },
 };
 </script>

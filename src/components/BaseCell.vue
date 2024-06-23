@@ -24,7 +24,7 @@ export default {
     },
   },
   updated() {
-    if (this.$parent.winner) {
+    if (this.$parent.winner || this.$parent.moves === 0) {
       this.canMark = true;
     }
   },

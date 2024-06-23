@@ -13,7 +13,7 @@
         @shot="listenOnShot"
       />
     </div>
-    <restart-button @reset="reset" />
+    <restart-button v-show="winner || moves === 9" @reset="reset" />
   </section>
 </template>
 
@@ -59,7 +59,7 @@ export default {
   },
   computed: {
     message() {
-      return this.activePlayer + "'s " + this.gameStatus;
+      return this.activePlayer + ' ' + this.gameStatus;
     },
   },
   methods: {
@@ -67,6 +67,7 @@ export default {
       this.cellsValues[marker] = this.activePlayer;
       if (this.isThereAWinner()) {
         this.winner = this.activePlayer;
+        this.$emit('winner', this.winner);
         this.gameStatus = this.color = 'win';
         this.fillRemainingCellsWithWinner();
         return;
@@ -108,7 +109,7 @@ export default {
       value === 9 ? (this.color = 'draw') : '';
       if (!this.winner && value === 9) {
         this.gameStatus = 'draw';
-        this.winner = '';
+        this.winner = this.activePlayer = '';
       }
     },
   },
